@@ -117,10 +117,6 @@ function install_iftop {
 	print_warn "Example usage: iftop -i venet0"
 }
 
-function install_vim {
-	check_install vim vim
-}
-
 function install_dropbear {
 
 	if [ -z "$1" ]
@@ -1225,7 +1221,6 @@ system)
 	remove_unneeded
 	update_upgrade
 	install_dash
-	install_vim
 	install_nano
 	install_htop
 	install_mc
