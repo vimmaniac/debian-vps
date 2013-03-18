@@ -430,10 +430,6 @@ function install_site {
 Hello World
 END
 
-	# Setup test phpinfo.php file
-	echo "<?php phpinfo(); ?>" > /var/www/$1/public/phpinfo.php
-	chown www-data:www-data "/var/www/$1/public/phpinfo.php"
-
 	# Setting up Nginx mapping
 	cat > "/etc/nginx/sites-available/$1.conf" <<END
 server {
@@ -1233,7 +1229,7 @@ system)
 	echo '  '
 	echo 'Usage:' `basename $0` '[option] [argument]'
 	echo 'Available options (in recomended order):'
-	echo '  - dotdeb                 (install dotdeb apt source for nginx +1.0)'
+	echo '  - dotdeb                 (install dotdeb apt source)'
 	echo '  - system                 (remove unneeded, upgrade system, install software)'
 	echo '  - exim4                  (install exim4 mail server)'
 	echo '  - dropbear  [port]       (SSH server)'
