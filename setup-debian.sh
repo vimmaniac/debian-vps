@@ -956,7 +956,8 @@ function update_upgrade {
 }
 
 function update_timezone {
-	dpkg-reconfigure tzdata
+	echo "Europe/Helsinki" > /etc/timezone
+	dpkg-reconfigure -f noninteractive tzdata
 }
 
 
