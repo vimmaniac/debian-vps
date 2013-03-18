@@ -938,7 +938,7 @@ function fix_locale {
 
 	# Generate locale
 	locale-gen en_US.UTF-8
-	dpkg-reconfigure locales
+	# dpkg-reconfigure locales
 }
 
 function apt_clean_all {

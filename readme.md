@@ -23,8 +23,8 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 ### Warning! This script is self destructive, it'll overwrite previous configs during reinstallation.
 
 	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/setup-debian.sh && chmod +x setup-debian.sh
-	./setup-debian.sh locale 	# for OpenVZ
 	./setup-debian.sh dotdeb
+	./setup-debian.sh locale 	# for OpenVZ
 	./setup-debian.sh system
 	./setup-debian.sh dropbear [port]
 	./setup-debian.sh iptables [port]
