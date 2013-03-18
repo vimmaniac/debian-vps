@@ -23,69 +23,70 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 ### Warning! This script is self destructive, it'll overwrite previous configs during reinstallation.
 
 	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/setup-debian.sh && chmod +x setup-debian.sh
-	$ ./setup-debian.sh dotdeb # not required if using Ubuntu
-	$ ./setup-debian.sh system
-	$ ./setup-debian.sh dropbear 22  # or any other port number
-	$ ./setup-debian.sh iptables [dropbear port] # or any other port number
-	$ ./setup-debian.sh mysql
-	$ ./setup-debian.sh nginx
-	$ ./setup-debian.sh php
-	$ ./setup-debian.sh exim4
-	$ ./setup-debian.sh site example.com
-	$ ./setup-debian.sh wordpress example.com
-	$ ./setup-debian.sh 3proxy 3128
-	$ ./setup-debian.sh 3proxyauth username password
+	./setup-debian.sh locale 	# for OpenVZ
+	./setup-debian.sh dotdeb
+	./setup-debian.sh system
+	./setup-debian.sh dropbear [port]
+	./setup-debian.sh iptables [port]
+	./setup-debian.sh mysql
+	./setup-debian.sh nginx
+	./setup-debian.sh php
+	./setup-debian.sh exim4
+	./setup-debian.sh site example.com
+	./setup-debian.sh wordpress example.com
+	./setup-debian.sh 3proxy 3128
+	./setup-debian.sh 3proxyauth username password
 
 #### ... and now time for some extras
 
 ##### Webmin
 
-	$ ./setup-debian.sh webmin
+	./setup-debian.sh webmin
 
 ##### vzfree
 
 Supported only on OpenVZ only, vzfree reports correct memory usage
 
-	$ ./setup-debian.sh vzfree
+	./setup-debian.sh vzfree
 
 ##### Classic Disk I/O and Network test
 
 Run the classic Disk IO (dd) & Classic Network (cachefly) Test
 
-	$ ./setup-debian.sh test
+	./setup-debian.sh test
 
 ##### Neat python script to report memory usage per app
 
 Neat python script to report memory usage per app
 
-	$ ./setup-debian.sh ps_mem
+	./setup-debian.sh ps_mem
 
 ##### sources.list updating (Ubuntu only)
 
 Updates Ubuntu /etc/apt/sources.list to default based on whatever version you are running
 
-	$ ./setup-debian.sh apt
+	./setup-debian.sh apt
 
 ##### Info on Operating System, version and Architecture
 
-	$ ./setup-debian.sh info
+	./setup-debian.sh info
 
 ##### SSH-Keys
 
 Either you want to generate ssh-keys (id_rsa) or a custom key for something (rsync etc)
 Note: argument is optional, if its left out, it will write "id_rsa" key
 
-	$ ./setup-debian.sh sshkey [optional argument_1]
+	./setup-debian.sh sshkey [optional argument_1]
     
 ##### Extras
 
 Fixing locale on some OpenVZ Ubuntu templates
 
-	$ ./setup-debian.sh locale
+	./setup-debian.sh locale
 
 Configure or reconfigure MOTD
 
-	$ ./setup-debian.sh motd
+	./setup-debian.sh motd
 
 ## After installation
 
