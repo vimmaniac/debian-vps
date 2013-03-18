@@ -10,7 +10,7 @@ Remove excess packages (apache2, sendmail, bind9, samba, nscd, etc) and install 
  - PHP-FPM (v5.3+ with APC installed and configured)
  - exim4 (light mail server)
  - nginx (v1.2+ from dotdeb, configured for lowend VPS. Change worker_processes number in /etc/nginx/nginx.conf according to number of your CPUs)
- - vim, nano, mc, htop, iftop & iotop (more to come...)
+ - nano, mc, htop, iftop & iotop (more to come...)
 
 Includes sample nginx config files for PHP sites. You can create a basic site shell (complete with nginx vhost) like this:
 
@@ -22,7 +22,7 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 ### Warning! This script is self destructive, it'll overwrite previous configs during reinstallation.
 
-	wget --no-check-certificate https://raw.github.com/Xeoncross/lowendscript/master/setup-debian.sh && chmod +x setup-debian.sh
+	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/setup-debian.sh && chmod +x setup-debian.sh
 	$ ./setup-debian.sh dotdeb # not required if using Ubuntu
 	$ ./setup-debian.sh system
 	$ ./setup-debian.sh dropbear 22  # or any other port number
