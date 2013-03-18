@@ -53,7 +53,7 @@ function get_domain_name() {
 	domain=${1%.*}
 	lowest=`expr "$domain" : '.*\.\([a-z][a-z]*\)'`
 	case "$lowest" in
-	com|net|org|gov|edu|co|me|info|name)
+	com|net|org|gov|edu|co|me|info|name|fi)
 		domain=${domain%.*}
 		;;
 	esac
