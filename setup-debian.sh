@@ -831,23 +831,6 @@ END
 }
 
 ############################################################
-# Install vzfree (OpenVZ containers only)
-############################################################
-function install_vzfree {
-	print_warn "build-essential package is now being installed which will take additional diskspace"
-	check_install build-essential build-essential
-	cd ~
-	wget http://hostingfu.com/files/vzfree/vzfree-0.1.tgz -O vzfree-0.1.tgz
-	tar -vxf vzfree-0.1.tgz
-	cd vzfree-0.1
-	make && make install
-	cd ..
-	vzfree
-	print_info "vzfree has been installed"
-	rm -fr vzfree-0.1 vzfree-0.1.tgz
-}
-
-############################################################
 # Install Webmin
 ############################################################
 function install_webmin {
@@ -1207,9 +1190,6 @@ ps_mem)
 apt)
 	update_apt_sources
 	;;
-vzfree)
-	install_vzfree
-	;;
 webmin)
 	install_webmin
 	;;
@@ -1260,7 +1240,6 @@ system)
 	echo '  - sshkey                 (Generate SSH key)'
 	echo '  - apt                    (update sources.list for UBUNTU only)'
 	echo '  - ps_mem                 (Download the handy python script to report memory usage)'
-	echo '  - vzfree                 (Install vzfree for correct memory reporting on OpenVZ VPS)'
 	echo '  - locale                 (Fix locales issue with OpenVZ Ubuntu templates)'
 	echo '  - webmin                 (Install Webmin for VPS management)'
 	echo '  - test                   (Run the classic disk IO and classic cachefly network test)'

@@ -43,12 +43,6 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 	./setup-debian.sh webmin
 
-##### vzfree
-
-Supported only on OpenVZ only, vzfree reports correct memory usage
-
-	./setup-debian.sh vzfree
-
 ##### Classic Disk I/O and Network test
 
 Run the classic Disk IO (dd) & Classic Network (cachefly) Test
