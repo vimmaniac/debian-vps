@@ -34,10 +34,10 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 	./deb-setup.sh exim4
 	./deb-setup.sh site example.com
 	./deb-setup.sh wordpress example.com
-	./deb-setup.sh 3proxy 3128
-	./deb-setup.sh 3proxyauth username password
 
-#### ... and now time for some extras
+	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/deb-3proxy.sh && chmod +x deb-3proxy.sh
+	./deb-3proxy.sh install [port]
+	./deb-3proxt.sh auth [username] [password]
 
 ##### Webmin
 
