@@ -960,6 +960,7 @@ function update_timezone {
 
 function update_vmswappiness {
 	echo "vm.swappiness=20" >> /etc/sysctl.conf
+	echo 20 > /proc/sys/vm/swappiness
 }
 
 
