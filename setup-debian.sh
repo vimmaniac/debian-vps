@@ -427,6 +427,10 @@ END
 		sed -i \
 			"s/# gzip_/gzip_/g" \
 			/etc/nginx/nginx.conf
+		# Hide server version
+		sed -i \
+			"s/# server_tokens off;/server_tokens off;/" \
+			/etc/nginx/nginx.conf
  fi
 	invoke-rc.d nginx restart
 }
