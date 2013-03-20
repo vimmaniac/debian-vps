@@ -983,7 +983,7 @@ function update_timezone {
 }
 
 function update_vmswappiness {
-	echo "20" >> /etc/sysctl.conf
+	echo "vm.swappiness=20" >> /etc/sysctl.conf
 }
 
 
