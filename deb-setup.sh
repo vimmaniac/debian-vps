@@ -456,7 +456,7 @@ END
 	cat > "/etc/nginx/sites-available/$1.conf" <<END
 server {
 	listen 80;
-	server_name www.$1 $1;
+	server_name $1;
 	root /var/www/$1/public;
 	index index.html index.htm index.php;
 
