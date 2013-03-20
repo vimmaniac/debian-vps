@@ -78,16 +78,6 @@ Note: argument is optional, if its left out, it will write "id_rsa" key
 
 	./setup-debian.sh sshkey [optional argument_1]
     
-##### Extras
-
-Fixing locale on some OpenVZ Ubuntu templates
-
-	./setup-debian.sh locale
-
-Configure or reconfigure MOTD
-
-	./setup-debian.sh motd
-
 ## After installation
 
 MySQL root is given a new password which is located in ~root/.my.cnf.
