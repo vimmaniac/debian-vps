@@ -22,7 +22,7 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 ### Warning! This script is self destructive, it'll overwrite previous configs during reinstallation.
 
-	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/deb-setup.sh && chmod +x deb-setup.sh
+	wget https://raw.github.com/perttierkkila/lowendscript/master/deb-setup.sh && chmod +x deb-setup.sh
 	./deb-setup.sh dotdeb
 	./deb-setup.sh locale 	# for OpenVZ
 	./deb-setup.sh system
@@ -35,7 +35,7 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 	./deb-setup.sh site example.com
 	./deb-setup.sh wordpress example.com
 
-	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/deb-3proxy.sh && chmod +x deb-3proxy.sh
+	wget https://raw.github.com/perttierkkila/lowendscript/master/deb-3proxy.sh && chmod +x deb-3proxy.sh
 	./deb-3proxy.sh install [port]
 	./deb-3proxt.sh auth [username] [password]
 
