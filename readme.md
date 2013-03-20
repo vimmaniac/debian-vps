@@ -14,7 +14,7 @@ Remove excess packages (apache2, sendmail, bind9, samba, nscd, etc) and install 
 
 Includes sample nginx config files for PHP sites. You can create a basic site shell (complete with nginx vhost) like this:
 
-./setup-debian.sh site example.com
+./deb-setup.sh site example.com
 
 When running the iptables or dropbear install you must specify a SSH port. Remember, port 22 is the default. It's recomended that you change this from 22 just to save server load from attacks on that port.
 
@@ -22,55 +22,55 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 ### Warning! This script is self destructive, it'll overwrite previous configs during reinstallation.
 
-	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/setup-debian.sh && chmod +x setup-debian.sh
-	./setup-debian.sh dotdeb
-	./setup-debian.sh locale 	# for OpenVZ
-	./setup-debian.sh system
-	./setup-debian.sh dropbear [port]
-	./setup-debian.sh iptables [port]
-	./setup-debian.sh mysql
-	./setup-debian.sh nginx
-	./setup-debian.sh php
-	./setup-debian.sh exim4
-	./setup-debian.sh site example.com
-	./setup-debian.sh wordpress example.com
-	./setup-debian.sh 3proxy 3128
-	./setup-debian.sh 3proxyauth username password
+	wget --no-check-certificate https://raw.github.com/perttierkkila/lowendscript/master/deb-setup.sh && chmod +x deb-setup.sh
+	./deb-setup.sh dotdeb
+	./deb-setup.sh locale 	# for OpenVZ
+	./deb-setup.sh system
+	./deb-setup.sh dropbear [port]
+	./deb-setup.sh iptables [port]
+	./deb-setup.sh mysql
+	./deb-setup.sh nginx
+	./deb-setup.sh php
+	./deb-setup.sh exim4
+	./deb-setup.sh site example.com
+	./deb-setup.sh wordpress example.com
+	./deb-setup.sh 3proxy 3128
+	./deb-setup.sh 3proxyauth username password
 
 #### ... and now time for some extras
 
 ##### Webmin
 
-	./setup-debian.sh webmin
+	./deb-setup.sh webmin
 
 ##### Classic Disk I/O and Network test
 
 Run the classic Disk IO (dd) & Classic Network (cachefly) Test
 
-	./setup-debian.sh test
+	./deb-setup.sh test
 
 ##### Neat python script to report memory usage per app
 
 Neat python script to report memory usage per app
 
-	./setup-debian.sh ps_mem
+	./deb-setup.sh ps_mem
 
 ##### sources.list updating (Ubuntu only)
 
 Updates Ubuntu /etc/apt/sources.list to default based on whatever version you are running
 
-	./setup-debian.sh apt
+	./deb-setup.sh apt
 
 ##### Info on Operating System, version and Architecture
 
-	./setup-debian.sh info
+	./deb-setup.sh info
 
 ##### SSH-Keys
 
 Either you want to generate ssh-keys (id_rsa) or a custom key for something (rsync etc)
 Note: argument is optional, if its left out, it will write "id_rsa" key
 
-	./setup-debian.sh sshkey [optional argument_1]
+	./deb-setup.sh sshkey [optional argument_1]
     
 ## After installation
 
