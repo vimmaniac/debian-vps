@@ -9,8 +9,8 @@ Remove excess packages (apache2, sendmail, bind9, samba, nscd, etc) and install 
  - MySQL (v5.5+ without Innodb, configured for lowend VPS)
  - PHP-FPM (v5.3+ with APC installed and configured)
  - exim4 (light mail server)
- - nginx (v1.2+ from dotdeb, configured for lowend VPS)
- - nano, mc, htop, iftop & iotop (more to come...)
+ - nginx (v1.2+ from dotdeb)
+ - nano, mc, htop, iftop & iotop
 
 Includes sample nginx config files for PHP sites. You can create a basic site shell (complete with nginx vhost) like this:
 
@@ -20,7 +20,7 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 ## Usage (in recomended order)
 
-### Warning! This script is self destructive, it'll overwrite previous configs during reinstallation.
+### Warning! This script will overwrite previous configs during reinstallation.
 
 	wget https://raw.github.com/perttierkkila/lowendscript/master/deb-setup.sh && chmod +x deb-setup.sh
 	./deb-setup.sh dotdeb
@@ -32,8 +32,11 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 	./deb-setup.sh nginx
 	./deb-setup.sh php
 	./deb-setup.sh exim4
-	./deb-setup.sh site example.com
-	./deb-setup.sh wordpress example.com
+	./deb-setup.sh site [site url]
+	./deb-setup.sh mysqluser [site url]
+	./deb-setup.sh wordpress [site url]
+
+##### 3proxy
 
 	wget https://raw.github.com/perttierkkila/lowendscript/master/deb-3proxy.sh && chmod +x deb-3proxy.sh
 	./deb-3proxy.sh install [port]
