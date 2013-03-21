@@ -22,7 +22,8 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 ### Warning! This script will overwrite previous configs during reinstallation.
 
-	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-setup.sh && chmod +x deb-setup.sh
+	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-setup.sh
+	chmod +x deb-setup.sh
 	./deb-setup.sh dotdeb
 	./deb-setup.sh locale 	# for OpenVZ
 	./deb-setup.sh system
@@ -40,13 +41,15 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 For agent, enter Zabbix-server IP to configure agent and iptables to allow connections. Host name refers configured name at Zabbix-server (required to get active checks working). Server installs main server, frontend and local agent. Running server+frontend requires around 100Mb extra memory and modifications to PHP-settings, so 150Mb+ memory is required. Agent takes around 4Mb.
 
-	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-zabbix.sh && chmod +x deb-zabbix.sh
+	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-zabbix.sh
+	chmod +x deb-zabbix.sh
 	./deb-zabbix.sh agent [server ip] [host name]
 	./deb-zabbix.sh server [host name]
 
 ##### 3proxy
 
-	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-3proxy.sh && chmod +x deb-3proxy.sh
+	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-3proxy.sh
+	chmod +x deb-3proxy.sh
 	./deb-3proxy.sh install [port]
 	./deb-3proxy.sh auth [username] [password]
 
