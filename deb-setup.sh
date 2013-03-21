@@ -434,6 +434,11 @@ END
 			"s/# server_tokens off;/server_tokens off;/" \
 			/etc/nginx/nginx.conf
  fi
+
+	# remove localhost-config
+	rm -f /etc/nginx/sites-enabled/default
+
+	# restart nginx
 	invoke-rc.d nginx restart
 }
 
