@@ -403,6 +403,25 @@ location ~ \.php$ {
 # The exploit also can be stopped by adding "cgi.fix_pathinfo = 0" in your php.ini file.
 END
 
+	# remove localhost-config
+	rm -f /etc/nginx/sites-enabled/default
+
+	# create denyall-config
+	cat > /etc/nginx/sites-available/denyall.conf <<END
+# This is default mapping if nothing matches (eg. direct usage of IP). Everything returns 403 (forbidden).
+server {
+        listen [::]:80 default_server;
+
+        location / {
+                deny all;
+        }
+
+	# If you want to redirect all 403 to somewhere, use this:
+	# error_page 403 http://example.com/forbidden.html;
+}
+END
+	ln -s /etc/nginx/sites-available/denyall.conf /etc/nginx/sites-enabled/denyall.conf
+
 	echo 'Created /etc/nginx/php.conf for PHP sites'
 	echo 'Created /etc/nginx/sites-available/default_php sample vhost'
 	echo ' '
@@ -434,9 +453,6 @@ END
 			"s/# server_tokens off;/server_tokens off;/" \
 			/etc/nginx/nginx.conf
  fi
-
-	# remove localhost-config
-	rm -f /etc/nginx/sites-enabled/default
 
 	# restart nginx
 	invoke-rc.d nginx restart
