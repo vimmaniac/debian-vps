@@ -751,6 +751,7 @@ function install_iptables {
 # log iptables denied calls (Can grow log files fast!)
 #-A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
 
+# Below is a line anchor for other scripts, do NOT modify
 # Misc
 
 # Reject all other inbound - default deny unless explicitly allowed policy
