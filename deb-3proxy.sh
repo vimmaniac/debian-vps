@@ -195,8 +195,8 @@ auth)
 *)
 	echo '  '
 	echo 'Usage:' `basename $0` '[option] [argument]'
-	echo '  - install            (Install 3proxy - Free tiny proxy server, with authenticatin support, HTTP, SOCKS5 and whatever you can throw at it)'
-	echo '  - auth               (add users/passwords to your proxy user authentication list)'
+	echo '- install   (Install 3proxy - Free tiny proxy server, with authenticatin support, HTTP, SOCKS5 and whatever you can throw at it)'
+	echo '- auth      (add users/passwords to your proxy user authentication list)'
 	;;
 esac
 

@@ -119,8 +119,8 @@ server)
 *)
 	echo '  '
 	echo 'Usage:' `basename $0` '[option] [argument]'
-	echo '  - agent [server ip] [host name]      (install zabbix agent and configure it)'
-	echo '  - server [host name]                 (install zabbix server+frontend and agent)'
+	echo '- agent [server ip] [host name]   (install zabbix agent and configure it)'
+	echo '- server [host name]              (install zabbix server+frontend and agent)'
 	echo '  '
 	;;
 esac
