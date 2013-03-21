@@ -326,7 +326,7 @@ function install_nginx {
 # Creates unlimited domains for PHP sites as long as you add the
 # entry to /etc/hosts and create the matching \$host folder.
 server {
-	listen 80 default;
+	listen [::]:80;
 	server_name _;
 	root /var/www/\$host/public;
 	index index.html index.htm index.php;
@@ -456,7 +456,7 @@ END
 	# Setting up Nginx mapping
 	cat > "/etc/nginx/sites-available/$1.conf" <<END
 server {
-	listen 80;
+	listen [::]:80;
 	server_name $1;
 	root /var/www/$1/public;
 	index index.html index.htm index.php;
@@ -549,7 +549,7 @@ END
 	# Setting up Nginx mapping
 	cat > "/etc/nginx/sites-available/$1.conf" <<END
 server {
-	listen 80;
+	listen [::]:80;
 	server_name www.$1 $1;
 	root /var/www/$1/public;
 	index index.php;
