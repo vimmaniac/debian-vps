@@ -22,7 +22,7 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 ### Warning! This script will overwrite previous configs during reinstallation.
 
-	wget https://raw.github.com/perttierkkila/debian-vps/master/deb-setup.sh && chmod +x deb-setup.sh
+	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-setup.sh && chmod +x deb-setup.sh
 	./deb-setup.sh dotdeb
 	./deb-setup.sh locale 	# for OpenVZ
 	./deb-setup.sh system
@@ -38,7 +38,7 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 
 ##### 3proxy
 
-	wget https://raw.github.com/perttierkkila/debian-vps/master/deb-3proxy.sh && chmod +x deb-3proxy.sh
+	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-3proxy.sh && chmod +x deb-3proxy.sh
 	./deb-3proxy.sh install [port]
 	./deb-3proxy.sh auth [username] [password]
 
