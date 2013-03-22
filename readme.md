@@ -25,7 +25,7 @@ When running the iptables or dropbear install you must specify a SSH port. Remem
 	wget --no-check-certificate https://raw.github.com/perttierkkila/debian-vps/master/deb-setup.sh
 	chmod +x deb-setup.sh
 	./deb-setup.sh dotdeb
-	./deb-setup.sh locale
+	./deb-setup.sh locale   # for OpenVZ
 	./deb-setup.sh system
 	./deb-setup.sh dropbear [port]
 	./deb-setup.sh iptables [port]

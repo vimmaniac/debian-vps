@@ -927,18 +927,15 @@ function show_os_arch_version {
 }
 
 ############################################################
-# Fix locale for OpenVZ templates and regenerate locale-archive
+# Fix locale for OpenVZ templates
 ############################################################
 function fix_locale {
-	check_install locales locales
 	export LANGUAGE=en_US.UTF-8
 	export LANG=en_US.UTF-8
 	export LC_ALL=en_US.UTF-8
 
 	# Generate locale
 	locale-gen en_US.UTF-8
-
-	check_remove /usr/sbin/locale-gen locales
 }
 
 function apt_clean {
@@ -1057,7 +1054,7 @@ system)
 	echo 'Usage:' `basename $0` '[option] [argument]'
 	echo 'Available options (in recomended order):'
 	echo '- dotdeb                 (install dotdeb apt source)'
-	echo '- locale                 (Fix locales issue with OpenVZ templates and clears locale-archive)'
+	echo '- locale                 (Fix locales issue with OpenVZ templates)'
 	echo '- system                 (remove unneeded, upgrade system, install software)'
 	echo '- dropbear  [port]       (SSH server)'
 	echo '- iptables  [port]       (setup basic firewall with HTTP(S) open)'
