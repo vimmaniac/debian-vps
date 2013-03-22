@@ -24,6 +24,7 @@ function check_remove {
 	if [ -n "`which "$1" 2>/dev/null`" ]
 	then
 		DEBIAN_FRONTEND=noninteractive apt-get -q -y remove --purge "$2"
+		apt-get clean
 		print_info "$2 removed"
 	else
 		print_warn "$2 is not installed"
@@ -163,8 +164,6 @@ function install_exim4 {
 }
 
 function install_dotdeb {
-	#echo "deb http://mirror.us.leaseweb.net/dotdeb/ stable all" >> /etc/apt/sources.list
-	#echo "deb-src http://mirror.us.leaseweb.net/dotdeb/ stable all" >> /etc/apt/sources.list
 	echo "deb http://packages.dotdeb.org squeeze all" >> /etc/apt/sources.list
 	echo "deb-src http://packages.dotdeb.org squeeze all" >> /etc/apt/sources.list
 	wget -q -O - http://www.dotdeb.org/dotdeb.gpg | apt-key add -
@@ -775,8 +774,7 @@ function remove_unneeded {
 	# before running apt-get update.
 	check_remove /usr/sbin/rsyslogd rsyslog
 
-	# Other packages that seem to be pretty common in standard OpenVZ
-	# templates.
+	# Other packages that seem to be pretty common in standard templates.
 	check_remove /usr/sbin/apache2 'apache2*'
 	check_remove /usr/sbin/named 'bind9*'
 	check_remove /usr/sbin/smbd 'samba*'
@@ -939,6 +937,8 @@ function fix_locale {
 
 	# Generate locale
 	locale-gen en_US.UTF-8
+
+	check_remove /usr/sbin/locale-gen locales
 }
 
 function apt_clean {
