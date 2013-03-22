@@ -12,6 +12,7 @@ function check_install {
 		while [ -n "$1" ]
 		do
 			DEBIAN_FRONTEND=noninteractive apt-get -q -y install "$1"
+			apt-get clean
 			print_info "$1 installed for $executable"
 			shift
 		done
@@ -799,47 +800,9 @@ function install_ps_mem {
 }
 
 ############################################################
-# Update apt sources (Ubuntu only; not yet supported for debian)
-############################################################
-function update_apt_sources {
-	eval `grep '^DISTRIB_CODENAME=' /etc/*-release 2>/dev/null`
-
-	if [ "$DISTRIB_CODENAME" == "" ]
-	then
-		die "Unknown Ubuntu flavor $DISTRIB_CODENAME"
-	fi
-
-	cat > /etc/apt/sources.list <<END
-## main & restricted repositories
-deb http://us.archive.ubuntu.com/ubuntu/ $DISTRIB_CODENAME main restricted
-deb-src http://us.archive.ubuntu.com/ubuntu/ $DISTRIB_CODENAME main restricted
-
-deb http://security.ubuntu.com/ubuntu $DISTRIB_CODENAME-updates main restricted
-deb-src http://security.ubuntu.com/ubuntu $DISTRIB_CODENAME-updates main restricted
-
-deb http://security.ubuntu.com/ubuntu $DISTRIB_CODENAME-security main restricted
-deb-src http://security.ubuntu.com/ubuntu $DISTRIB_CODENAME-security main restricted
-
-## universe repositories - uncomment to enable
-deb http://us.archive.ubuntu.com/ubuntu/ $DISTRIB_CODENAME universe
-deb-src http://us.archive.ubuntu.com/ubuntu/ $DISTRIB_CODENAME universe
-
-deb http://us.archive.ubuntu.com/ubuntu/ $DISTRIB_CODENAME-updates universe
-deb-src http://us.archive.ubuntu.com/ubuntu/ $DISTRIB_CODENAME-updates universe
-
-deb http://security.ubuntu.com/ubuntu $DISTRIB_CODENAME-security universe
-deb-src http://security.ubuntu.com/ubuntu $DISTRIB_CODENAME-security universe
-END
-
-	print_info "/etc/apt/sources.list updated for "$DISTRIB_CODENAME
-}
-
-############################################################
 # Install Webmin
 ############################################################
 function install_webmin {
-	print_warn "Make sure you have update the apt file first RUN 'bash `basename $0` apt' to update the /etc/apt/sources.list"
-
 	print_info "Installing required packages"
 	check_install perl perl
 	check_install libnet-ssleay-perl libnet-ssleay-perl
@@ -944,17 +907,6 @@ function apt_clean {
 }
 
 function update_upgrade {
-	# prevent kernel/grub updates
-	cat > /etc/apt/preferences <<END
-Package: linux-base linux-image linux-headers firmware-linux-free
-Pin: release
-Pin-Priority: -1
-
-Package: grub-common
-Pin: release
-Pin-Priority: -1
-END
-
 	# Run through the apt-get update/upgrade first. This should be done we try to install any package
 	apt-get -q -y update
 	apt-get -q -y upgrade
@@ -1067,7 +1019,6 @@ system)
 	echo '... and now some extras'
 	echo '- info                   (Displays information about the OS, ARCH and VERSION)'
 	echo '- sshkey                 (Generate SSH key)'
-	echo '- apt                    (update sources.list for UBUNTU only)'
 	echo '- ps_mem                 (Download the handy python script to report memory usage)'
 	echo '- webmin                 (Install Webmin for VPS management)'
 	echo '- test                   (Run the classic disk IO and classic cachefly network test)'

@@ -69,12 +69,6 @@ Neat python script to report memory usage per app
 
 	./deb-setup.sh ps_mem
 
-##### sources.list updating (Ubuntu only)
-
-Updates Ubuntu /etc/apt/sources.list to default based on whatever version you are running
-
-	./deb-setup.sh apt
-
 ##### Info on Operating System, version and Architecture
 
 	./deb-setup.sh info
