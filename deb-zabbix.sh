@@ -86,7 +86,7 @@ function install_agent {
 	then
 		# Open port only for zabbix server, default port 10050
 		sed -i \
-			"s/^# Misc$/# Misc\n-A INPUT -p tcp -s $1 --dport 10050 -j ACCEPT/" \
+			"s/^COMMIT$/-A INPUT -p tcp -s $1 --dport 10050 -j ACCEPT\nCOMMIT/" \
 			/etc/iptables.up.rules
 
 		iptables -F

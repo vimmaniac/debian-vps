@@ -708,26 +708,32 @@ function install_iptables {
 	# Create startup rules
 	cat > /etc/iptables.up.rules <<END
 *filter
-
 # http://articles.slicehost.com/2010/4/30/ubuntu-lucid-setup-part-1
-
-#  Allows all loopback (lo0) traffic and drop all traffic to 127/8 that doesn't use lo0
--A INPUT -i lo -j ACCEPT
--A INPUT ! -i lo -d 127.0.0.0/8 -j REJECT
+# http://wiki.debian.org/DebianFirewall
+# by default, DROP everything input/forward and ACCEPT out => do NOT use -F as every input will be denied
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
 
 #  Accepts all established inbound connections
 -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
-#  Allows all outbound traffic
-#  You can modify this to only allow certain traffic
--A OUTPUT -j ACCEPT
+# Allow local programs that use loopback (Unix sockets)
+-A INPUT -s 127.0.0.0/8 -d 127.0.0.0/8 -i lo -j ACCEPT
+
+# Allow ping
+-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
 
 # Allows HTTP and HTTPS connections from anywhere (the normal ports for websites)
 -A INPUT -p tcp --dport 80 -j ACCEPT
 -A INPUT -p tcp --dport 443 -j ACCEPT
 
-# UN-COMMENT THESE IF YOU USE INCOMING MAIL!
+#  Allows SSH connections (only 3 attempts by an IP every minute, drop the rest to prevent SSH attacks)
+-A INPUT -p tcp -m tcp --dport $1 -m state --state NEW -m recent --set --name DEFAULT --rsource
+-A INPUT -p tcp -m tcp --dport $1 -m state --state NEW -m recent --update --seconds 60 --hitcount 3 --name DEFAULT --rsource -j DROP
+-A INPUT -p tcp -m state --state NEW --dport $1 -j ACCEPT
 
+### UN-COMMENT THESE IF YOU USE INCOMING MAIL!
 # Allows POP (and SSL-POP)
 #-A INPUT -p tcp --dport 110 -j ACCEPT
 #-A INPUT -p tcp --dport 995 -j ACCEPT
@@ -739,28 +745,6 @@ function install_iptables {
 # IMAP (and IMAPS)
 #-A INPUT -p tcp --dport 143 -j ACCEPT
 #-A INPUT -p tcp --dport 993 -j ACCEPT
-
-#  Allows SSH connections (only 3 attempts by an IP every minute, drop the rest to prevent SSH attacks)
--A INPUT -p tcp -m tcp --dport $1 -m state --state NEW -m recent --set --name DEFAULT --rsource
--A INPUT -p tcp -m tcp --dport $1 -m state --state NEW -m recent --update --seconds 60 --hitcount 3 --name DEFAULT --rsource -j DROP
--A INPUT -p tcp -m state --state NEW --dport $1 -j ACCEPT
-
-# Allow ping
--A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
-
-# log iptables denied calls (Can grow log files fast!)
-#-A INPUT -m limit --limit 5/min -j LOG --log-prefix "iptables denied: " --log-level 7
-
-# Below is a line anchor for other scripts, do NOT modify
-# Misc
-
-# Reject all other inbound - default deny unless explicitly allowed policy
-#-A INPUT -j REJECT
-#-A FORWARD -j REJECT
-
-# It's safer to just DROP the packet
--A INPUT -j DROP
--A FORWARD -j DROP
 
 COMMIT
 END
