@@ -147,6 +147,8 @@ service ssh
 }
 END
 	invoke-rc.d xinetd restart
+
+	print_info "dropbear installed and running"
 }
 
 function install_exim4 {
@@ -761,12 +763,7 @@ END
 	# Load the rules
 	iptables-restore < /etc/iptables.up.rules
 
-	# You can flush the current rules with /sbin/iptables -F
-	echo 'Created /etc/iptables.up.rules and startup script /etc/network/if-pre-up.d/iptables'
-	echo 'If you make changes you can restore the rules with';
-	echo '/sbin/iptables -F'
-	echo 'iptables-restore < /etc/iptables.up.rules'
-	echo ' '
+	print_info "iptables configured and running"
 }
 
 function remove_unneeded {
@@ -932,26 +929,25 @@ function show_os_arch_version {
 }
 
 ############################################################
-# Fix locale for OpenVZ templates
+# Fix locale for OpenVZ templates and regenerate locale-archive
 ############################################################
 function fix_locale {
-	check_install multipath-tools multipath-tools
+	check_install locales locales
 	export LANGUAGE=en_US.UTF-8
 	export LANG=en_US.UTF-8
 	export LC_ALL=en_US.UTF-8
 
 	# Generate locale
 	locale-gen en_US.UTF-8
-	# dpkg-reconfigure locales
 }
 
-function apt_clean_all {
-	apt-get clean all
+function apt_clean {
+	apt-get -q -y autoclean
+	apt-get -q -y clean
 }
 
 function update_upgrade {
-	# Run through the apt-get update/upgrade first. This should be done before
-	# we try to install any package
+	# Run through the apt-get update/upgrade first. This should be done we try to install any package
 	apt-get -q -y update
 	apt-get -q -y upgrade
 
@@ -1040,6 +1036,7 @@ system)
 	install_iotop
 	install_iftop
 	install_syslogd
+	apt_clean
 	;;
 *)
 	show_os_arch_version
@@ -1047,7 +1044,7 @@ system)
 	echo 'Usage:' `basename $0` '[option] [argument]'
 	echo 'Available options (in recomended order):'
 	echo '- dotdeb                 (install dotdeb apt source)'
-	echo '- locale                 (Fix locales issue with OpenVZ templates)'
+	echo '- locale                 (Fix locales issue with OpenVZ templates and clears locale-archive)'
 	echo '- system                 (remove unneeded, upgrade system, install software)'
 	echo '- dropbear  [port]       (SSH server)'
 	echo '- iptables  [port]       (setup basic firewall with HTTP(S) open)'
