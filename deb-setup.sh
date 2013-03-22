@@ -947,6 +947,19 @@ function apt_clean {
 }
 
 function update_upgrade {
+	if [ -f /etc/apt/preferences ]
+	then
+	cat > /etc/apt/preferences <<END
+Package: linux-base linux-image linux-headers firmware-linux-free
+Pin: release
+Pin-Priority: -1
+
+Package: grub-common
+Pin: release
+Pin-Priority: -1
+END
+	fi
+
 	# Run through the apt-get update/upgrade first. This should be done we try to install any package
 	apt-get -q -y update
 	apt-get -q -y upgrade
