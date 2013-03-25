@@ -12,6 +12,7 @@ function check_install {
 		while [ -n "$1" ]
 		do
 			DEBIAN_FRONTEND=noninteractive apt-get -q -y install "$1"
+			apt-get clean
 			print_info "$1 installed for $executable"
 			shift
 		done
