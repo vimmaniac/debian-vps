@@ -16,9 +16,9 @@ Includes sample nginx config files for PHP sites. You can create a basic site sh
 
 ./deb-setup.sh site www.example.com
 
-When running the iptables or dropbear install you must specify a SSH port. Remember, port 22 is the default. It's recomended that you change this from 22 just to save server load from attacks on that port.
+When running the iptables or dropbear install you must specify a SSH port. Remember, port 22 is the default. It's recommended that you change this from 22 just to save server load from attacks on that port.
 
-## Usage (in recomended order)
+## Usage (in recommended order)
 
 ### Warning! This script will overwrite previous configs during reinstallation.
 
@@ -82,11 +82,11 @@ Note: argument is optional, if its left out, it will write "id_rsa" key
     
 ## After installation
 
-MySQL root is given a new password which is located in ~root/.my.cnf.
-After installing the full set, ram usage reaches ~40-45Mb.
-By default APC configured to use 16Mb for caching.
-To reduce ram usage, you may disable APC by moving or deleting the following file - /etc/php5/conf.d/apc.ini
-I recommend installing Ajenti and/or Webmin to manage your VPS.
+- MySQL root is given a new password which is located in ~root/.my.cnf
+- after installing the full set, ram usage reaches ~40-45Mb.
+- by default APC is configured to use 16Mb for caching
+- to reduce ram usage, you may disable APC by moving or deleting file /etc/php5/conf.d/apc.ini
+- I recommend installing Ajenti and/or Webmin to manage your VPS
 
 ## Credits
 

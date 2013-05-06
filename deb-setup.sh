@@ -1014,7 +1014,7 @@ system)
 	show_os_arch_version
 	echo '  '
 	echo 'Usage:' `basename $0` '[option] [argument]'
-	echo 'Available options (in recomended order):'
+	echo 'Available options (in recommended order):'
 	echo '- dotdeb                 (install dotdeb apt source)'
 	echo '- locale                 (Fix locales issue with OpenVZ templates)'
 	echo '- system                 (remove unneeded, upgrade system, install software)'
