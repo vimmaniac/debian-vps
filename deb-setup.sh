@@ -434,19 +434,12 @@ server {
 	# error_page 403 http://example.com/forbidden.html;
 }
 END
+	# enable deny-all default-site
 	ln -s /etc/nginx/sites-available/denyall.conf /etc/nginx/sites-enabled/denyall.conf
 
 	echo 'Created /etc/nginx/php.conf for PHP sites'
 	echo 'Created /etc/nginx/sites-available/default_php sample vhost'
 	echo ' '
-
- if [ -f /etc/nginx/sites-available/default ]
-	then
-		# Made IPV6 Listener not conflict and throw errors
-		sed -i \
-			"s/listen \[::]:80 default_server;/listen [::]:80 default_server ipv6only=on;/" \
-			/etc/nginx/sites-available/default
- fi
 
  if [ -f /etc/nginx/nginx.conf ]
 	then
