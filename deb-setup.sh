@@ -340,7 +340,7 @@ function install_nginx {
 # Creates unlimited domains for PHP sites as long as you add the
 # entry to /etc/hosts and create the matching \$host folder.
 server {
-	listen [::]:80;
+	listen 80;
 	server_name _;
 	root /var/www/\$host/public;
 	index index.html index.htm index.php;
@@ -424,7 +424,7 @@ END
 	cat > /etc/nginx/sites-available/denyall.conf <<END
 # This is default mapping if nothing matches (eg. direct usage of IP). Everything returns 403 (forbidden).
 server {
-        listen [::]:80 default_server;
+        listen 80 default_server;
 
         location / {
                 deny all;
@@ -484,7 +484,7 @@ END
 	# Setting up Nginx mapping
 	cat > "/etc/nginx/sites-available/$1.conf" <<END
 server {
-	listen [::]:80;
+	listen 80;
 	server_name $1;
 	root /var/www/$1/public;
 	index index.html index.htm index.php;
@@ -577,7 +577,7 @@ END
 	# Setting up Nginx mapping
 	cat > "/etc/nginx/sites-available/$1.conf" <<END
 server {
-	listen [::]:80;
+	listen 80;
 	server_name www.$1 $1;
 	root /var/www/$1/public;
 	index index.php;
