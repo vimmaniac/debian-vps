@@ -348,7 +348,7 @@ server {
 
 	# Directives to send expires headers and turn off 404 error logging.
 	location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-		expires max;
+		expires 7d;
 		log_not_found off;
 		access_log off;
 	}
@@ -497,7 +497,7 @@ server {
 
 	# Directives to send expires headers and turn off 404 error logging.
 	location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-		expires max;
+		expires 7d;
 		log_not_found off;
 		access_log off;
 	}
@@ -600,7 +600,7 @@ server {
 
     # Directives to send expires headers and turn off 404 error logging.
     location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-        expires max;
+        expires 7d;
         log_not_found off;
         access_log off;
     }
