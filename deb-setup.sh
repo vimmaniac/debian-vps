@@ -180,6 +180,7 @@ function install_dotdeb {
 	fi
 
 	wget -q -O - http://www.dotdeb.org/dotdeb.gpg | apt-key add -
+	apt-get -q -y update
 }
 
 function install_syslogd {
