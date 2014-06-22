@@ -12,10 +12,10 @@ function install_3proxy {
 	echo "Downloading and building 3proxy"
 	mkdir /tmp/proxy
 	cd /tmp/proxy
-	wget http://www.3proxy.ru/0.6.1/3proxy-0.6.1.tgz
-	tar -xvzf 3proxy-0.6.1.tgz
-	rm 3proxy-0.6.1.tgz
-	cd 3proxy-0.6.1
+	wget http://3proxy.ru/0.7/3proxy-0.7.tgz
+	tar -xvzf 3proxy-0.7.tgz
+	rm 3proxy-0.7.tgz
+	cd 3proxy-0.7
 	apt-get install build-essential
 	make -f Makefile.Linux
 	
@@ -36,6 +36,7 @@ function install_3proxy {
 	cat > "/etc/3proxy/3proxy.cfg" <<END
 # Specify valid name servers. You can locate them on your VPS in /etc/resolv.conf
 #
+nserver 127.0.0.1
 nserver 8.8.8.8
 nserver 8.8.4.4
 # Leave default cache size for DNS requests:
