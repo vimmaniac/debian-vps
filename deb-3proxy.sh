@@ -1,5 +1,5 @@
 ############################################################
-# Install 3proxy (version 0.6.1, perfect proxy for LEB, supports authentication, easy config)
+# Install 3proxy (version 0.7, perfect proxy for LEB, supports authentication, easy config)
 ############################################################
 function install_3proxy {
 
